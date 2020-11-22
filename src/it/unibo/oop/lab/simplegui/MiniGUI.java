@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -47,7 +48,14 @@ public class MiniGUI {
                 System.out.println(rng.nextInt());
             }
         });
+        
+        final JPanel myPanel = new JPanel();
+        myPanel.setLayout(new BoxLayout(myPanel, BoxLayout.PAGE_AXIS));
+        myPanel.add(write, BoxLayout.X_AXIS);
+        frame.setContentPane(myPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+    
 
     private void display() {
         /*
@@ -72,6 +80,8 @@ public class MiniGUI {
          * OK, ready to pull the frame onscreen
          */
         frame.setVisible(true);
+        
+        frame.pack();
     }
 
     /**

@@ -1,9 +1,23 @@
 package it.unibo.oop.lab.mvcio;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintStream;
+
+import javax.swing.JOptionPane;
+
+import it.unibo.oop.lab.iogui.BadIOGUI;
+
 /**
  * 
  */
 public class Controller {
+
+    private File myFile;
+    private static final String PATH = System.getProperty("user.home") 
+                                     + System.getProperty("file.separator")
+                                     + "output.txt";
 
     /*
      * This class must implement a simple controller responsible of I/O access. It
@@ -28,4 +42,27 @@ public class Controller {
      * to a software that runs correctly on every platform.
      */
 
+    public Controller() {
+        myFile = new File(PATH);
+    }
+    
+    public void setCurrentFile(File f) {
+        this.myFile = f;
+    }
+
+    public File getCurrentFile() {
+        return this.myFile;
+    }
+    
+    public String getPath() {
+        return myFile.getPath();
+    }
+    
+    public void addStringToFile(String s) throws IOException{
+        try (PrintStream ps = new PrintStream(myFile.getPath())) {
+            ps.print(s);
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+    }
 }
