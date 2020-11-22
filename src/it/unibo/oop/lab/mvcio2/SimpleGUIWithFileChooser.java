@@ -89,10 +89,11 @@ public final class SimpleGUIWithFileChooser {
 
             public void actionPerformed(ActionEvent e) {
                 JFileChooser jfc = new JFileChooser();
-                if(jfc.showSaveDialog(null)==JFileChooser.APPROVE_OPTION) {
+                var risultato = jfc.showSaveDialog(myPanel);
+                if(risultato ==JFileChooser.APPROVE_OPTION) {
                     c.setCurrentFile(jfc.getSelectedFile());
                     myText.setText(c.getPath().toString());
-                }else if(jfc.showSaveDialog(null)==JFileChooser.CANCEL_OPTION) {
+                }else if(risultato!=JFileChooser.CANCEL_OPTION) {
                     JOptionPane.showMessageDialog(null, "An error as occured");
                 }
                 
